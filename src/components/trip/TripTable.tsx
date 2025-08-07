@@ -291,7 +291,7 @@ export default function TripTable() {
                     <div className="flex items-center gap-2">
                       <Camera className="h-4 w-4 text-gray-500" />
                       <button
-                        onClick={() => window.open(`https://xolfpyfftgalzvhpiffh.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`, '_blank')}
+                        onClick={() => window.open(`https://oiizdjzegvkqimbwjzax.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`, '_blank')}
                         className="text-sm text-blue-600 hover:text-blue-700"
                       >
                         View Photo
@@ -366,7 +366,7 @@ export default function TripTable() {
                   <div className="lg:col-span-1">
                     {trip.photo_url ? (
                       <button
-                        onClick={() => window.open(`https://xolfpyfftgalzvhpiffh.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`, '_blank')}
+                        onClick={() => window.open(`https://oiizdjzegvkqimbwjzax.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`, '_blank')}
                         className="text-blue-600 hover:text-blue-700"
                       >
                         <Camera className="h-4 w-4" />

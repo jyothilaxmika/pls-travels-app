@@ -220,7 +220,7 @@ export default function DriverDetailPage() {
                     {trip.photo_url && (
                       <div className="mt-2">
                         <img 
-                          src={`https://xolfpyfftgalzvhpiffh.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`}
+                          src={`https://oiizdjzegvkqimbwjzax.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`}
                           alt="Dashboard photo"
                           className="h-16 w-16 object-cover rounded border"
                         />

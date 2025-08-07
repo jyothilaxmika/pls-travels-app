@@ -329,12 +329,12 @@ export default function AuditPage() {
                     <h4 className="text-sm font-medium text-gray-900 mb-2">Dashboard Photo:</h4>
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
                       <img
-                        src={`https://xolfpyfftgalzvhpiffh.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`}
+                        src={`https://oiizdjzegvkqimbwjzax.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`}
                         alt="Dashboard photo"
                         className="h-20 w-20 lg:h-24 lg:w-24 object-cover rounded-lg border border-gray-300"
                       />
                       <button
-                        onClick={() => window.open(`https://xolfpyfftgalzvhpiffh.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`, '_blank')}
+                        onClick={() => window.open(`https://oiizdjzegvkqimbwjzax.supabase.co/storage/v1/object/public/trip-photos/${trip.photo_url}`, '_blank')}
                         className="inline-flex items-center gap-1 px-3 py-1 text-sm text-blue-600 hover:text-blue-700 border border-blue-300 rounded hover:bg-blue-50"
                       >
                         <Eye className="h-4 w-4" />
