@@ -6,13 +6,12 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  serverExternalPackages: ['@supabase/supabase-js'],
   images: {
-    domains: ['xolfpyfftgalzvhpiffh.supabase.co'],
+    domains: ['oiizdjzegvkqimbwjzax.supabase.co'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'xolfpyfftgalzvhpiffh.supabase.co',
+        hostname: 'oiizdjzegvkqimbwjzax.supabase.co',
         port: '',
         pathname: '/storage/v1/object/public/**',
       },

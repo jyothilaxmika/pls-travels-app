@@ -5,17 +5,17 @@ echo ========================================
 
 echo.
 echo 1. Opening Supabase Dashboard...
-start https://supabase.com/dashboard/project/xolfpyfftgalzvhpiffh
+start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax
 
 echo.
 echo 2. Opening SQL Editor...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/xolfpyfftgalzvhpiffh/sql
+start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax/sql
 
 echo.
 echo 3. Opening Storage Setup...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/xolfpyfftgalzvhpiffh/storage
+start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax/storage
 
 echo.
 echo ========================================
