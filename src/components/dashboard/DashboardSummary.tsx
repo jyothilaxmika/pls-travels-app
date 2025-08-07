@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase"
-import { useSession } from "@supabase/auth-ui-react"
+import { useAuth } from "@/hooks/useAuth"
 import { 
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -39,7 +39,7 @@ interface DashboardData {
 }
 
 export default function DashboardSummary() {
-  const { session } = useSession()
+  const { user, loading } = useAuth()
   const [data, setData] = useState<DashboardData>({
     totalTrips: 0,
     totalKms: 0,
@@ -56,37 +56,34 @@ export default function DashboardSummary() {
     shiftDistribution: [],
     anomalyDetails: []
   })
-  const [loading, setLoading] = useState(true)
+  const [dashboardLoading, setDashboardLoading] = useState(true)
   const [timeRange, setTimeRange] = useState<'week' | 'month' | 'quarter'>('month')
 
   useEffect(() => {
-    if (session) {
+    if (user && !loading) {
       fetchDashboardData()
     }
-  }, [session, timeRange])
+  }, [user, loading, timeRange])
 
   const fetchDashboardData = async () => {
     try {
-      setLoading(true)
+      setDashboardLoading(true)
       
       // Fetch trips data
       const { data: tripsData } = await supabase
         .from('trips')
         .select('*')
-        .eq('user_id', session?.user.id)
         .order('date', { ascending: false })
 
       // Fetch drivers data
       const { data: driversData } = await supabase
         .from('drivers')
         .select('*')
-        .eq('user_id', session?.user.id)
 
       // Fetch payments data
       const { data: paymentsData } = await supabase
         .from('payments')
         .select('*')
-        .eq('user_id', session?.user.id)
 
       if (tripsData && driversData && paymentsData) {
         processDashboardData(tripsData, driversData, paymentsData)
@@ -94,7 +91,7 @@ export default function DashboardSummary() {
     } catch (error) {
       console.error('Error fetching dashboard data:', error)
     } finally {
-      setLoading(false)
+      setDashboardLoading(false)
     }
   }
 
@@ -112,7 +109,7 @@ export default function DashboardSummary() {
     // Platform breakdown
     const platformBreakdown = trips.reduce((acc, trip) => {
       const platform = trip.platform || 'other'
-      const existing = acc.find(p => p.name === platform)
+      const existing = acc.find((p: { name: string; value: number }) => p.name === platform)
       if (existing) {
         existing.value += 1
       } else {
@@ -190,7 +187,7 @@ export default function DashboardSummary() {
       const shift = trip.departure_time ? 
         (parseInt(trip.departure_time.split(':')[0]) < 12 ? 'Morning' : 'Evening') : 'Unknown'
       
-      const existing = acc.find(s => s.shift === shift)
+      const existing = acc.find((s: { shift: string; trips: number; earnings: number }) => s.shift === shift)
       if (existing) {
         existing.trips += 1
         existing.earnings += trip.amount || 0
@@ -204,7 +201,7 @@ export default function DashboardSummary() {
   }
 
   const detectAnomalies = (trips: any[]) => {
-    const anomalies = []
+    const anomalies: Array<{ tripId: string; type: string; severity: string }> = []
     
     trips.forEach(trip => {
       // Fuel anomaly (> 25L in one trip)
@@ -229,7 +226,14 @@ export default function DashboardSummary() {
   }
 
   const generateAnomalyDetails = (trips: any[]) => {
-    const details = []
+    const details: Array<{
+      id: string
+      type: string
+      severity: 'low' | 'medium' | 'high'
+      description: string
+      tripId: string
+      driverId: string
+    }> = []
     
     trips.forEach(trip => {
       if (trip.fuel_cost && trip.fuel_cost > 2500) {
@@ -271,7 +275,7 @@ export default function DashboardSummary() {
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
 
-  if (loading) {
+  if (dashboardLoading) {
     return (
       <div className="bg-white rounded-lg shadow p-6">
         <div className="flex items-center justify-center py-12">
@@ -380,7 +384,7 @@ export default function DashboardSummary() {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
                 outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"

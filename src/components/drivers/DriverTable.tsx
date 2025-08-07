@@ -81,7 +81,7 @@ export default function DriverTable({ onEdit, onDelete }: DriverTableProps) {
   }
 
   const getStatusBadge = (status: string) => {
-    const statusOption = DRIVER_STATUS.find(s => s.value === status)
+    const statusOption = DRIVER_STATUS.find((s: { value: string; label: string }) => s.value === status)
     if (!statusOption) return status
 
     return (

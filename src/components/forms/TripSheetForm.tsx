@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { useState } from "react"
 import { supabase } from "@/lib/supabase"
-import { useSession } from "@supabase/auth-ui-react"
 import { Calendar, MapPin, DollarSign, Car, Loader2, CheckCircle } from "lucide-react"
 import { useDrivers } from "@/hooks/useDrivers"
 
@@ -25,7 +24,6 @@ const tripFormSchema = z.object({
 type TripFormData = z.infer<typeof tripFormSchema>
 
 export default function TripSheetForm() {
-  const { session } = useSession()
   const { drivers, loading: driversLoading } = useDrivers()
   const [success, setSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -46,16 +44,13 @@ export default function TripSheetForm() {
   })
 
   const selectedDriverId = watch("driver_id")
-  const selectedDriver = drivers.find(d => d.id === selectedDriverId)
+  const selectedDriver = drivers.find((d: any) => d.id === selectedDriverId)
 
   const onSubmit = async (data: TripFormData) => {
-    if (!session) return
-    
     setIsSubmitting(true)
     try {
       const { error } = await supabase.from("trips").insert({
         ...data,
-        user_id: session.user.id,
         status: "completed",
         created_at: new Date().toISOString(),
       })

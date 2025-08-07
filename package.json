@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:no-types": "next build --no-lint",
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export",

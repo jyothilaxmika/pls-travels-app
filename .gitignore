@@ -122,3 +122,5 @@ temp/
 
 # Deployment
 deploy/
+
+.vercel

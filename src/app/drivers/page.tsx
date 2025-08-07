@@ -1,6 +1,6 @@
 "use client"
 
-import { useSession } from "@supabase/auth-ui-react"
+import { useAuth } from "@/hooks/useAuth"
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Plane, LogOut } from 'lucide-react'
@@ -10,15 +10,15 @@ import type { Driver } from '@/types/driver'
 import { supabase } from '@/lib/supabase'
 
 export default function DriversPage() {
-  const { session } = useSession()
+  const { user, loading } = useAuth()
   const router = useRouter()
   const [showAddForm, setShowAddForm] = useState(false)
 
   useEffect(() => {
-    if (!session) {
+    if (!loading && !user) {
       router.push('/login')
     }
-  }, [session, router])
+  }, [user, loading, router])
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
@@ -40,12 +40,16 @@ export default function DriversPage() {
     // Refresh the table or show success message
   }
 
-  if (!session) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
       </div>
     )
+  }
+
+  if (!user) {
+    return null // Will redirect to login
   }
 
   return (
@@ -68,7 +72,7 @@ export default function DriversPage() {
                 Dashboard
               </button>
               <span className="text-sm text-gray-600">
-                Welcome, {session.user.email}
+                Welcome, {user.email}
               </span>
               <button 
                 onClick={handleSignOut}

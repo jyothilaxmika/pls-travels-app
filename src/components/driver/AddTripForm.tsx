@@ -2,27 +2,22 @@
 
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
 import { supabase } from "@/lib/supabase"
-import { useSession } from "@supabase/auth-ui-react"
 import { MapPin, DollarSign, Calendar, Clock, Loader2, CheckCircle, Plus, X, Upload, Image } from 'lucide-react'
 import { v4 as uuidv4 } from 'uuid'
 
-const tripSchema = z.object({
-  date: z.string().min(1, "Date is required"),
-  platform: z.enum(["uber", "ola", "rapido", "other"]),
-  destination: z.string().min(2, "Destination must be at least 2 characters"),
-  departure_time: z.string().min(1, "Departure time is required"),
-  return_time: z.string().optional(),
-  amount: z.coerce.number().min(0, "Amount must be positive"),
-  distance_km: z.coerce.number().min(0, "Distance must be positive"),
-  fuel_cost: z.coerce.number().min(0, "Fuel cost must be positive").optional(),
-  notes: z.string().optional(),
-  photo: z.any().optional(),
-})
-
-type TripFormData = z.infer<typeof tripSchema>
+interface TripFormData {
+  date: string
+  platform: "uber" | "ola" | "rapido" | "other"
+  destination: string
+  departure_time: string
+  return_time?: string
+  amount: number
+  distance_km: number
+  fuel_cost?: number
+  notes?: string
+  photo?: any
+}
 
 interface AddTripFormProps {
   driverId: string
@@ -31,7 +26,6 @@ interface AddTripFormProps {
 }
 
 export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFormProps) {
-  const { session } = useSession()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [showForm, setShowForm] = useState(false)
@@ -45,7 +39,6 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
     reset,
     formState: { errors }
   } = useForm<TripFormData>({
-    resolver: zodResolver(tripSchema),
     defaultValues: {
       date: new Date().toISOString().split('T')[0],
       platform: "uber",
@@ -63,8 +56,6 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
   }
 
   const onSubmit = async (data: TripFormData) => {
-    if (!session) return
-
     setIsSubmitting(true)
     setUploading(true)
 
@@ -103,7 +94,6 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
         .insert({
           ...data,
           driver_id: driverId,
-          user_id: session.user.id,
           status: "completed",
           created_at: new Date().toISOString(),
           photo_url: photoUrl,
@@ -196,7 +186,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
               />
             </div>
             {errors.date && (
-              <p className="mt-1 text-sm text-red-600">{errors.date.message}</p>
+              <p className="mt-1 text-sm text-red-600">{String(errors.date.message)}</p>
             )}
           </div>
 
@@ -215,7 +205,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
               <option value="other">Other</option>
             </select>
             {errors.platform && (
-              <p className="mt-1 text-sm text-red-600">{errors.platform.message}</p>
+              <p className="mt-1 text-sm text-red-600">{String(errors.platform.message)}</p>
             )}
           </div>
         </div>
@@ -236,7 +226,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
             />
           </div>
           {errors.destination && (
-            <p className="mt-1 text-sm text-red-600">{errors.destination.message}</p>
+            <p className="mt-1 text-sm text-red-600">{String(errors.destination.message)}</p>
           )}
         </div>
 
@@ -256,7 +246,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
               />
             </div>
             {errors.departure_time && (
-              <p className="mt-1 text-sm text-red-600">{errors.departure_time.message}</p>
+              <p className="mt-1 text-sm text-red-600">{String(errors.departure_time.message)}</p>
             )}
           </div>
 
@@ -271,7 +261,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             {errors.return_time && (
-              <p className="mt-1 text-sm text-red-600">{errors.return_time.message}</p>
+              <p className="mt-1 text-sm text-red-600">{String(errors.return_time.message)}</p>
             )}
           </div>
         </div>
@@ -294,7 +284,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
               />
             </div>
             {errors.amount && (
-              <p className="mt-1 text-sm text-red-600">{errors.amount.message}</p>
+              <p className="mt-1 text-sm text-red-600">{String(errors.amount.message)}</p>
             )}
           </div>
 
@@ -311,7 +301,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             {errors.distance_km && (
-              <p className="mt-1 text-sm text-red-600">{errors.distance_km.message}</p>
+              <p className="mt-1 text-sm text-red-600">{String(errors.distance_km.message)}</p>
             )}
           </div>
 
@@ -328,7 +318,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             {errors.fuel_cost && (
-              <p className="mt-1 text-sm text-red-600">{errors.fuel_cost.message}</p>
+              <p className="mt-1 text-sm text-red-600">{String(errors.fuel_cost.message)}</p>
             )}
           </div>
         </div>
@@ -378,7 +368,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
              )}
            </div>
            {errors.photo && (
-             <p className="mt-1 text-sm text-red-600">{errors.photo.message}</p>
+             <p className="mt-1 text-sm text-red-600">{String(errors.photo.message)}</p>
            )}
          </div>
 
@@ -395,7 +385,7 @@ export default function AddTripForm({ driverId, onSuccess, onCancel }: AddTripFo
              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
            />
            {errors.notes && (
-             <p className="mt-1 text-sm text-red-600">{errors.notes.message}</p>
+             <p className="mt-1 text-sm text-red-600">{String(errors.notes.message)}</p>
            )}
          </div>
 
