@@ -13,7 +13,7 @@
 **Step 1: Access Supabase Dashboard**
 1. Go to [supabase.com](https://supabase.com)
 2. Sign in to your account
-3. Open your project: `xolfpyfftgalzvhpiffh`
+3. Open your project: `oiizdjzegvkqimbwjzax`
 
 **Step 2: Run Database Schema**
 1. In Supabase Dashboard → **SQL Editor**
