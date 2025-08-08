@@ -16,9 +16,9 @@
    - Connect your GitHub repository
    - Add environment variables:
      ```
-     NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
-     NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnB4dG13dW5hcHh6bWRidGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2ODQ5MzgsImV4cCI6MjA3MDI2MDkzOH0.SK-9VllizbdamhZHfTYBisWpjZ04ePL8d5V06oQQftw
-     NEXT_PUBLIC_APP_NAME=PLS Travels DMS
+     NEXT_PUBLIC_SUPABASE_URL={{SUPABASE_URL}}
+     NEXT_PUBLIC_SUPABASE_ANON_KEY={{SUPABASE_ANON_KEY}}
+     NEXT_PUBLIC_APP_NAME={{APP_NAME}}
      ```
    - Deploy!
 
@@ -46,9 +46,9 @@
 2. **Run container**
    ```bash
    docker run -p 3000:3000 \
-      -e NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co \
-      -e NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnB4dG13dW5hcHh6bWRidGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2ODQ5MzgsImV4cCI6MjA3MDI2MDkzOH0.SK-9VllizbdamhZHfTYBisWpjZ04ePL8d5V06oQQftw \
-      -e NEXT_PUBLIC_APP_NAME="PLS Travels DMS" \
+      -e NEXT_PUBLIC_SUPABASE_URL={{SUPABASE_URL}} \
+      -e NEXT_PUBLIC_SUPABASE_ANON_KEY={{SUPABASE_ANON_KEY}} \
+      -e NEXT_PUBLIC_APP_NAME="{{APP_NAME}}" \
      pls-travels-dms
    ```
 
@@ -90,9 +90,9 @@ SELECT COUNT(*) as anomaly_count FROM trips WHERE anomaly_flag = true;
 Make sure these are set in your deployment platform:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnB4dG13dW5hcHh6bWRidGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2ODQ5MzgsImV4cCI6MjA3MDI2MDkzOH0.SK-9VllizbdamhZHfTYBisWpjZ04ePL8d5V06oQQftw
-NEXT_PUBLIC_APP_NAME=PLS Travels DMS
+NEXT_PUBLIC_SUPABASE_URL={{SUPABASE_URL}}
+NEXT_PUBLIC_SUPABASE_ANON_KEY={{SUPABASE_ANON_KEY}}
+NEXT_PUBLIC_APP_NAME={{APP_NAME}}
 ```
 
 ## 📱 Features Ready

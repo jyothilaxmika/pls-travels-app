@@ -36,9 +36,9 @@ echo Next steps:
 echo 1. Go to https://vercel.com
 echo 2. Connect your GitHub repository
 echo 3. Add environment variables:
-echo    - NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
-echo    - NEXT_PUBLIC_SUPABASE_ANON_KEY=[SET IN VERCEL ENV VARS]
-echo    - NEXT_PUBLIC_APP_NAME=PLS Travels DMS
+echo    - NEXT_PUBLIC_SUPABASE_URL={{SUPABASE_URL}}
+echo    - NEXT_PUBLIC_SUPABASE_ANON_KEY={{SUPABASE_ANON_KEY}}
+echo    - NEXT_PUBLIC_APP_NAME={{APP_NAME}}
 echo 4. Deploy!
 
 echo.

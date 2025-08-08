@@ -13,7 +13,7 @@
 **Step 1: Access Supabase Dashboard**
 1. Go to [supabase.com](https://supabase.com)
 2. Sign in to your account
-3. Open your project: `hqbpxtmwunapxzmdbtjs`
+3. Open your project: `{{SUPABASE_PROJECT_REF}}`
 
 **Step 2: Run Database Schema**
 1. In Supabase Dashboard → **SQL Editor**
@@ -75,9 +75,9 @@ scripts/deploy-vercel.bat
 4. Import repository: `jyothilaxmika/pls-travels-app`
 5. Add environment variables:
    ```
-   NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=[YOUR REAL ANON JWT]
-   NEXT_PUBLIC_APP_NAME=PLS Travels DMS
+   NEXT_PUBLIC_SUPABASE_URL={{SUPABASE_URL}}
+   NEXT_PUBLIC_SUPABASE_ANON_KEY={{SUPABASE_ANON_KEY}}
+   NEXT_PUBLIC_APP_NAME={{APP_NAME}}
    ```
 6. Click "Deploy"
 

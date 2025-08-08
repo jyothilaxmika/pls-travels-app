@@ -8,22 +8,22 @@ echo Opening Supabase Dashboard pages...
 echo.
 
 echo 1. Opening Supabase Dashboard...
-start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs
+start https://supabase.com/dashboard/project/{{SUPABASE_PROJECT_REF}}
 
 echo.
 echo 2. Opening SQL Editor...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs/sql
+start https://supabase.com/dashboard/project/{{SUPABASE_PROJECT_REF}}/sql
 
 echo.
 echo 3. Opening Storage Setup...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs/storage
+start https://supabase.com/dashboard/project/{{SUPABASE_PROJECT_REF}}/storage
 
 echo.
 echo 4. Opening Authentication Settings...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs/auth/settings
+start https://supabase.com/dashboard/project/{{SUPABASE_PROJECT_REF}}/auth/settings
 
 echo.
 echo ========================================
@@ -58,16 +58,16 @@ echo ========================================
 echo Your Supabase Project Details:
 echo ========================================
 echo.
-echo Project URL: https://hqbpxtmwunapxzmdbtjs.supabase.co
-echo Service Role Key: [REDACTED]
+echo Project URL: {{SUPABASE_URL}}
+echo Service Role Key: {{SUPABASE_SERVICE_ROLE_KEY}}
 echo.
 echo ========================================
 echo Environment Variables for your app:
 echo ========================================
 echo.
-echo NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
-echo NEXT_PUBLIC_SUPABASE_ANON_KEY=[SEE .env.local]
-echo NEXT_PUBLIC_APP_NAME=PLS Travels DMS
+echo NEXT_PUBLIC_SUPABASE_URL={{SUPABASE_URL}}
+echo NEXT_PUBLIC_SUPABASE_ANON_KEY={{SUPABASE_ANON_KEY}}
+echo NEXT_PUBLIC_APP_NAME={{APP_NAME}}
 echo.
 echo ========================================
 echo Next Steps:

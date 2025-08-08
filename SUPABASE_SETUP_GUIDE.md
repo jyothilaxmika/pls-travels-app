@@ -14,11 +14,11 @@ Before starting, ensure you have:
 1. **Go to Supabase Dashboard**
    - Visit [supabase.com](https://supabase.com)
    - Sign in to your account
-  - Open your project: `hqbpxtmwunapxzmdbtjs`
+  - Open your project: `{{SUPABASE_PROJECT_REF}}`
 
 2. **Verify Project Details**
-  - Project URL: `https://hqbpxtmwunapxzmdbtjs.supabase.co`
-  - Service Role Key: `[REDACTED - use your dashboard]`
+  - Project URL: `{{SUPABASE_URL}}`
+  - Service Role Key: `{{SUPABASE_SERVICE_ROLE_KEY}}`
 
 ### **Step 2: Run Database Schema**
 

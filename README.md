@@ -107,9 +107,9 @@ pls-travels-dms/
 
 ### **Environment Variables**
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnB4dG13dW5hcHh6bWRidGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2ODQ5MzgsImV4cCI6MjA3MDI2MDkzOH0.SK-9VllizbdamhZHfTYBisWpjZ04ePL8d5V06oQQftw
-NEXT_PUBLIC_APP_NAME=PLS Travels DMS
+NEXT_PUBLIC_SUPABASE_URL={{SUPABASE_URL}}
+NEXT_PUBLIC_SUPABASE_ANON_KEY={{SUPABASE_ANON_KEY}}
+NEXT_PUBLIC_APP_NAME={{APP_NAME}}
 ```
 
 You can create a local `.env.local` file with the same keys for development.
@@ -117,11 +117,11 @@ You can create a local `.env.local` file with the same keys for development.
 Example `.env.example`:
 ```env
 # Supabase
-NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnB4dG13dW5hcHh6bWRidGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2ODQ5MzgsImV4cCI6MjA3MDI2MDkzOH0.SK-9VllizbdamhZHfTYBisWpjZ04ePL8d5V06oQQftw
+NEXT_PUBLIC_SUPABASE_URL={{SUPABASE_URL}}
+NEXT_PUBLIC_SUPABASE_ANON_KEY={{SUPABASE_ANON_KEY}}
 
 # Branding
-NEXT_PUBLIC_APP_NAME=PLS Travels DMS
+NEXT_PUBLIC_APP_NAME={{APP_NAME}}
 ```
 
 ### **Anomaly Detection Rules**
