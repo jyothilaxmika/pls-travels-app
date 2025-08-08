@@ -8,22 +8,22 @@ echo Opening Supabase Dashboard pages...
 echo.
 
 echo 1. Opening Supabase Dashboard...
-start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax
+start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs
 
 echo.
 echo 2. Opening SQL Editor...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax/sql
+start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs/sql
 
 echo.
 echo 3. Opening Storage Setup...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax/storage
+start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs/storage
 
 echo.
 echo 4. Opening Authentication Settings...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax/auth/settings
+start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs/auth/settings
 
 echo.
 echo ========================================
@@ -58,16 +58,16 @@ echo ========================================
 echo Your Supabase Project Details:
 echo ========================================
 echo.
-echo Project URL: https://oiizdjzegvkqimbwjzax.supabase.co
-echo Service Role Key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9paXpkanplZ3ZrcWltYndqemF4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NDU1MzkzNiwiZXhwIjoyMDcwMTI5OTM2fQ.B9OVlqNf4WxRAI87wSgCzppAvfrkcqZy8wPJWVcWqgU
+echo Project URL: https://hqbpxtmwunapxzmdbtjs.supabase.co
+echo Service Role Key: [REDACTED]
 echo.
 echo ========================================
 echo Environment Variables for your app:
 echo ========================================
 echo.
-echo NEXT_PUBLIC_SUPABASE_URL=https://oiizdjzegvkqimbwjzax.supabase.co
-echo NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9paXpkanplZ3ZrcWltYndqemF4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NDU1MzkzNiwiZXhwIjoyMDcwMTI5OTM2fQ.B9OVlqNf4WxRAI87wSgCzppAvfrkcqZy8wPJWVcWqgU
-echo NEXT_PUBLIC_APP_NAME=PLS Travels
+echo NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
+echo NEXT_PUBLIC_SUPABASE_ANON_KEY=[SEE .env.local]
+echo NEXT_PUBLIC_APP_NAME=PLS Travels DMS
 echo.
 echo ========================================
 echo Next Steps:

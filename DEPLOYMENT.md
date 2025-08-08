@@ -16,9 +16,9 @@
    - Connect your GitHub repository
    - Add environment variables:
      ```
-     NEXT_PUBLIC_SUPABASE_URL=https://xolfpyfftgalzvhpiffh.supabase.co
-     NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_IhKYwioDXaMsX9QqL1jtdg__p1fQbb_
-     NEXT_PUBLIC_APP_NAME=PLS Travels
+     NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
+     NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnB4dG13dW5hcHh6bWRidGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2ODQ5MzgsImV4cCI6MjA3MDI2MDkzOH0.SK-9VllizbdamhZHfTYBisWpjZ04ePL8d5V06oQQftw
+     NEXT_PUBLIC_APP_NAME=PLS Travels DMS
      ```
    - Deploy!
 
@@ -46,9 +46,9 @@
 2. **Run container**
    ```bash
    docker run -p 3000:3000 \
-     -e NEXT_PUBLIC_SUPABASE_URL=https://oiizdjzegvkqimbwjzax.supabase.co \
-     -e NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9paXpkanplZ3ZrcWltYndqemF4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NDU1MzkzNiwiZXhwIjoyMDcwMTI5OTM2fQ.B9OVlqNf4WxRAI87wSgCzppAvfrkcqZy8wPJWVcWqgU \
-     -e NEXT_PUBLIC_APP_NAME="PLS Travels" \
+      -e NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co \
+      -e NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnB4dG13dW5hcHh6bWRidGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2ODQ5MzgsImV4cCI6MjA3MDI2MDkzOH0.SK-9VllizbdamhZHfTYBisWpjZ04ePL8d5V06oQQftw \
+      -e NEXT_PUBLIC_APP_NAME="PLS Travels DMS" \
      pls-travels-dms
    ```
 
@@ -90,9 +90,9 @@ SELECT COUNT(*) as anomaly_count FROM trips WHERE anomaly_flag = true;
 Make sure these are set in your deployment platform:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://xolfpyfftgalzvhpiffh.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_IhKYwioDXaMsX9QqL1jtdg__p1fQbb_
-NEXT_PUBLIC_APP_NAME=PLS Travels
+NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnB4dG13dW5hcHh6bWRidGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2ODQ5MzgsImV4cCI6MjA3MDI2MDkzOH0.SK-9VllizbdamhZHfTYBisWpjZ04ePL8d5V06oQQftw
+NEXT_PUBLIC_APP_NAME=PLS Travels DMS
 ```
 
 ## 📱 Features Ready

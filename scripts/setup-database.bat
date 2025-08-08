@@ -5,17 +5,17 @@ echo ========================================
 
 echo.
 echo 1. Opening Supabase Dashboard...
-start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax
+start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs
 
 echo.
 echo 2. Opening SQL Editor...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax/sql
+start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs/sql
 
 echo.
 echo 3. Opening Storage Setup...
 timeout /t 3 /nobreak >nul
-start https://supabase.com/dashboard/project/oiizdjzegvkqimbwjzax/storage
+start https://supabase.com/dashboard/project/hqbpxtmwunapxzmdbtjs/storage
 
 echo.
 echo ========================================
@@ -44,5 +44,6 @@ echo ========================================
 echo Your application is running at:
 echo http://localhost:3000
 echo ========================================
+
 echo.
 pause

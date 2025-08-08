@@ -7,8 +7,8 @@ export async function middleware(request: NextRequest) {
   })
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://hqbpxtmwunapxzmdbtjs.supabase.co',
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_flHqSxia47fz2n-6GjxWzw_mKXITP1x',
     {
       cookies: {
         getAll() {
@@ -29,8 +29,12 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
+  // Allow auth callback and static-safe routes unauthenticated
+  const path = request.nextUrl.pathname
+  const isAuthCallback = path.startsWith('/auth') || path.startsWith('/confirm') || path.startsWith('/callback')
+
   // If user is not signed in and the current path is not /login, redirect to /login
-  if (!user && request.nextUrl.pathname !== '/login') {
+  if (!user && path !== '/login' && !isAuthCallback) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)

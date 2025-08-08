@@ -13,7 +13,7 @@
 **Step 1: Access Supabase Dashboard**
 1. Go to [supabase.com](https://supabase.com)
 2. Sign in to your account
-3. Open your project: `oiizdjzegvkqimbwjzax`
+3. Open your project: `hqbpxtmwunapxzmdbtjs`
 
 **Step 2: Run Database Schema**
 1. In Supabase Dashboard → **SQL Editor**
@@ -75,9 +75,9 @@ scripts/deploy-vercel.bat
 4. Import repository: `jyothilaxmika/pls-travels-app`
 5. Add environment variables:
    ```
-   NEXT_PUBLIC_SUPABASE_URL=https://xolfpyfftgalzvhpiffh.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_IhKYwioDXaMsX9QqL1jtdg__p1fQbb_
-   NEXT_PUBLIC_APP_NAME=PLS Travels
+   NEXT_PUBLIC_SUPABASE_URL=https://hqbpxtmwunapxzmdbtjs.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=[YOUR REAL ANON JWT]
+   NEXT_PUBLIC_APP_NAME=PLS Travels DMS
    ```
 6. Click "Deploy"
 
@@ -199,7 +199,7 @@ COPY trips FROM 'your-trips.csv' WITH CSV HEADER;
 **Build Errors**
 ```bash
 npm run build
-# Fix any TypeScript errors
+# Fix TypeScript errors
 npm run dev
 ```
 

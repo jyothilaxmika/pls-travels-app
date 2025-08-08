@@ -14,11 +14,11 @@ Before starting, ensure you have:
 1. **Go to Supabase Dashboard**
    - Visit [supabase.com](https://supabase.com)
    - Sign in to your account
-   - Open your project: `oiizdjzegvkqimbwjzax`
+  - Open your project: `hqbpxtmwunapxzmdbtjs`
 
 2. **Verify Project Details**
-   - Project URL: `https://oiizdjzegvkqimbwjzax.supabase.co`
-   - Service Role Key: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9paXpkanplZ3ZrcWltYndqemF4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NDU1MzkzNiwiZXhwIjoyMDcwMTI5OTM2fQ.B9OVlqNf4WxRAI87wSgCzppAvfrkcqZy8wPJWVcWqgU`
+  - Project URL: `https://hqbpxtmwunapxzmdbtjs.supabase.co`
+  - Service Role Key: `[REDACTED - use your dashboard]`
 
 ### **Step 2: Run Database Schema**
 
@@ -154,12 +154,6 @@ Trips can have these audit statuses:
 - [ ] User sessions persisting
 - [ ] Redirect URLs configured
 - [ ] Email templates working
-
-### **Application Tests**
-- [ ] Dashboard loading data
-- [ ] Trip creation with photos
-- [ ] Anomaly detection working
-- [ ] Audit system functional
 
 ## 🚨 Troubleshooting
 
