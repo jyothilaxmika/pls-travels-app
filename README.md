@@ -205,6 +205,34 @@ railway up
 
 ## 🧪 Testing
 
+### End-to-end testing (Playwright)
+
+This project includes Playwright for E2E tests.
+
+- Install browsers (first time only):
+
+```bash
+npx playwright install --with-deps
+```
+
+- Run tests:
+
+```bash
+npm run test:e2e
+```
+
+- Open the UI mode:
+
+```bash
+npm run test:e2e:ui
+```
+
+- View last test report:
+
+```bash
+npm run test:e2e:report
+```
+
 ### **Manual Testing Checklist**
 - [ ] Authentication flow
 - [ ] Driver CRUD operations

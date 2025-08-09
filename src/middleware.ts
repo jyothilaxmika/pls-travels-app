@@ -1,14 +1,25 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+function isConfigured() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  return Boolean(url && key && !url.includes('{{') && !key.includes('{{'))
+}
+
 export async function middleware(request: NextRequest) {
+  // If Supabase is not configured, do not enforce auth checks in middleware
+  if (!isConfigured()) {
+    return NextResponse.next()
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   })
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || '{{SUPABASE_URL}}',
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '{{SUPABASE_ANON_KEY}}',
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         getAll() {

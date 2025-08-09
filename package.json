@@ -9,7 +9,10 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export",
-    "deploy": "npm run build && npm run start"
+    "deploy": "npm run build && npm run start",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -30,6 +33,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.54.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
