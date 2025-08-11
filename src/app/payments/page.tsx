@@ -1,19 +1,11 @@
 'use client'
 
 import { useAuth } from '@/hooks/useAuth'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import { Plane, DollarSign, Plus, Search } from 'lucide-react'
+import Layout from '@/components/layout/Layout'
+import { DollarSign, Plus, Search } from 'lucide-react'
 
 export default function PaymentsPage() {
   const { user, loading } = useAuth()
-  const router = useRouter()
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/login')
-    }
-  }, [user, loading, router])
 
   if (loading) {
     return (
@@ -28,34 +20,8 @@ export default function PaymentsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center">
-              <Plane className="h-8 w-8 text-blue-600" />
-              <h1 className="ml-3 text-2xl font-bold text-gray-900">
-                PLS Travels DMS
-              </h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <button 
-                onClick={() => router.push('/dashboard')}
-                className="text-gray-600 hover:text-gray-900"
-              >
-                Dashboard
-              </button>
-              <span className="text-sm text-gray-600">
-                Welcome, {user.email}
-              </span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Layout>
+      <div className="space-y-6">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">Payments</h2>
@@ -188,7 +154,7 @@ export default function PaymentsPage() {
             </table>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </Layout>
   )
 } 

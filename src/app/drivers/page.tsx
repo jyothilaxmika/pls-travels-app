@@ -1,33 +1,21 @@
 "use client"
 
 import { useAuth } from "@/hooks/useAuth"
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { Plane, LogOut } from 'lucide-react'
+import { useState } from 'react'
+import { Plus } from 'lucide-react'
+import Layout from '@/components/layout/Layout'
 import AddDriverForm from '@/components/drivers/AddDriverForm'
 import DriverTable from '@/components/drivers/DriverTable'
+import EditDriverForm from '@/components/forms/EditDriverForm'
 import type { Driver } from '@/types/driver'
-import { supabase } from '@/lib/supabase'
 
 export default function DriversPage() {
   const { user, loading } = useAuth()
-  const router = useRouter()
   const [showAddForm, setShowAddForm] = useState(false)
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/login')
-    }
-  }, [user, loading, router])
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    router.push('/login')
-  }
+  const [editingDriver, setEditingDriver] = useState<Driver | null>(null)
 
   const handleEditDriver = (driver: Driver) => {
-    // TODO: Implement edit functionality
-    console.log('Edit driver:', driver)
+    setEditingDriver(driver)
   }
 
   const handleDeleteDriver = (driver: Driver) => {
@@ -37,7 +25,10 @@ export default function DriversPage() {
 
   const handleAddSuccess = () => {
     setShowAddForm(false)
-    // Refresh the table or show success message
+  }
+
+  const handleEditSuccess = () => {
+    setEditingDriver(null)
   }
 
   if (loading) {
@@ -53,58 +44,44 @@ export default function DriversPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center">
-              <Plane className="h-8 w-8 text-blue-600" />
-              <h1 className="ml-3 text-2xl font-bold text-gray-900">
-                PLS Travels DMS
-              </h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <button 
-                onClick={() => router.push('/dashboard')}
-                className="text-gray-600 hover:text-gray-900"
-              >
-                Dashboard
-              </button>
-              <span className="text-sm text-gray-600">
-                Welcome, {user.email}
-              </span>
-              <button 
-                onClick={handleSignOut}
-                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
-              >
-                <LogOut className="h-4 w-4" />
-                Sign Out
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Layout>
+      <div className="space-y-6">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">Drivers</h2>
             <p className="text-gray-600">Manage your driver fleet</p>
           </div>
-          <AddDriverForm 
-            onSuccess={handleAddSuccess}
-            onCancel={() => setShowAddForm(false)}
-          />
+          <button
+            onClick={() => setShowAddForm(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            Add Driver
+          </button>
         </div>
 
-        {/* Drivers Table */}
         <DriverTable 
           onEdit={handleEditDriver}
           onDelete={handleDeleteDriver}
         />
-      </main>
-    </div>
+      </div>
+
+      {/* Add Driver Modal */}
+      {showAddForm && (
+        <AddDriverForm 
+          onSuccess={handleAddSuccess}
+          onCancel={() => setShowAddForm(false)}
+        />
+      )}
+
+      {/* Edit Driver Modal */}
+      {editingDriver && (
+        <EditDriverForm
+          driver={editingDriver}
+          onSuccess={handleEditSuccess}
+          onCancel={() => setEditingDriver(null)}
+        />
+      )}
+    </Layout>
   )
 } 

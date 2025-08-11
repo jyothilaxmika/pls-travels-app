@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import Layout from '@/components/layout/Layout'
 import AddTripForm from '@/components/forms/AddTripForm'
 import { User, MapPin, Phone, Calendar, DollarSign, TrendingUp, Fuel, AlertTriangle } from 'lucide-react'
 
@@ -98,18 +99,18 @@ export default function DriverDetailPage() {
 
   if (!driver) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
+      <Layout>
+        <div className="text-center py-12">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Driver Not Found</h1>
           <p className="text-gray-600">The driver you're looking for doesn't exist.</p>
         </div>
-      </div>
+      </Layout>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Layout>
+      <div className="space-y-6">
         {/* Driver Header */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
@@ -233,6 +234,6 @@ export default function DriverDetailPage() {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 } 

@@ -45,13 +45,23 @@ export default function TripForm({ onSuccess, onCancel, initialData, mode = 'cre
     watch,
   } = useForm<TripFormData>({
     resolver: zodResolver(tripSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      date: new Date().toISOString().split('T')[0],
+      platform: 'uber',
+      departure_time: new Date().toTimeString().slice(0, 5),
+      status: 'completed',
+      ...initialData
+    },
   })
 
   // Fetch drivers on component mount
   useState(() => {
     const fetchDrivers = async () => {
-      const { data } = await supabase.from('drivers').select('id, name, phone')
+      const { data } = await supabase
+        .from('drivers')
+        .select('id, name, phone')
+        .eq('status', 'active')
+        .order('name')
       if (data) setDrivers(data)
     }
     fetchDrivers()
@@ -201,7 +211,6 @@ export default function TripForm({ onSuccess, onCancel, initialData, mode = 'cre
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-700">
-            Departure Time *
           </label>
           <input
             type="time"

@@ -19,7 +19,7 @@ import {
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
-import Navigation from '@/components/layout/Navigation'
+import Layout from '@/components/layout/Layout'
 
 interface SearchResult {
   id: string
@@ -203,10 +203,8 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <Layout>
+      <div className="max-w-4xl mx-auto">
         {/* Search Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Search</h1>
@@ -417,6 +415,6 @@ export default function SearchPage() {
           </div>
         )}
       </div>
-    </div>
+    </Layout>
   )
 }

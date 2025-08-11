@@ -1,7 +1,7 @@
 "use client"
 
 import { useAuth } from '@/hooks/useAuth'
-import Navigation from '@/components/layout/Navigation'
+import Layout from '@/components/layout/Layout'
 import InteractiveDashboard from '@/components/dashboard/InteractiveDashboard'
 
 export default function DashboardPage() {
@@ -23,10 +23,9 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
+    <Layout>
       <InteractiveDashboard />
-    </div>
+    </Layout>
   )
 }
 

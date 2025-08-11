@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
+import Layout from '@/components/layout/Layout'
 import { AlertTriangle, Calendar, MapPin, Fuel, DollarSign, Eye, User, Filter, Menu, X } from 'lucide-react'
 
 interface AnomalyTrip {
@@ -29,7 +30,6 @@ export default function AuditPage() {
   const [anomalyTrips, setAnomalyTrips] = useState<any[]>([])
   const [loadingData, setLoadingData] = useState(true)
   const [filter, setFilter] = useState('all') // all, needs_review, verified
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     if (!loading && !user) {
@@ -106,10 +106,6 @@ export default function AuditPage() {
     )
   }
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    router.push('/login')
-  }
 
   if (loading || loadingData) {
     return (
@@ -124,94 +120,8 @@ export default function AuditPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Mobile Header */}
-      <header className="bg-white shadow-sm border-b lg:hidden">
-        <div className="flex justify-between items-center px-4 py-3">
-          <div className="flex items-center">
-            <AlertTriangle className="h-6 w-6 text-red-600" />
-            <h1 className="ml-2 text-lg font-bold text-gray-900">
-              PLS Travels
-            </h1>
-          </div>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-gray-600 hover:text-gray-900"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-        
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="border-t bg-white">
-            <div className="px-4 py-3 space-y-2">
-              <button
-                onClick={() => router.push('/dashboard')}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded"
-              >
-                Dashboard
-              </button>
-              <button
-                onClick={() => router.push('/trips')}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded"
-              >
-                View All Trips
-              </button>
-              <button
-                onClick={() => router.push('/drivers')}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded"
-              >
-                Manage Drivers
-              </button>
-              <div className="border-t pt-2">
-                <span className="block px-3 py-1 text-sm text-gray-500">
-                  {user.email}
-                </span>
-                <button
-                  onClick={handleSignOut}
-                  className="block w-full text-left px-3 py-2 text-red-600 hover:bg-red-50 rounded"
-                >
-                  Sign Out
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Desktop Header */}
-      <header className="bg-white shadow-sm border-b hidden lg:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center">
-              <AlertTriangle className="h-8 w-8 text-red-600" />
-              <h1 className="ml-3 text-2xl font-bold text-gray-900">
-                PLS Travels DMS
-              </h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={() => router.push('/dashboard')}
-                className="text-gray-600 hover:text-gray-900"
-              >
-                Dashboard
-              </button>
-              <span className="text-sm text-gray-600">
-                Welcome, {user.email}
-              </span>
-              <button
-                onClick={handleSignOut}
-                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
-              >
-                Sign Out
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
+    <Layout>
+      <div className="space-y-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow p-4 lg:p-6 mb-4 lg:mb-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -379,6 +289,6 @@ export default function AuditPage() {
           </div>
         )}
       </div>
-    </div>
+    </Layout>
   )
 } 

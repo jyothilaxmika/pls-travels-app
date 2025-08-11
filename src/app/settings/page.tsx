@@ -16,7 +16,7 @@ import {
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
-import Navigation from '@/components/layout/Navigation'
+import Layout from '@/components/layout/Layout'
 
 export default function SettingsPage() {
   const { user } = useAuth()
@@ -92,10 +92,8 @@ export default function SettingsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <Layout>
+      <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Settings</h1>
           <p className="text-gray-600">Manage your account preferences</p>
@@ -271,6 +269,6 @@ export default function SettingsPage() {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
